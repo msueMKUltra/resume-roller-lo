@@ -1,0 +1,129 @@
+@keyframes opacity-showing
+  from
+    opacity: 0
+  to
+    opacity: 1
+
+@keyframes up-to-down
+  from
+    top: 0
+  to
+    top: 6px
+
+@keyframes down-to-up
+  from
+    top: 0
+  to
+    top: -6px
+
+
+body
+  .roller-navbar
+    background-image: url('./images/resume-background.jpg')
+    background-size: auto 100vh
+    background-repeat: no-repeat
+    background-color: #756baf
+  .roller-background
+    z-index: 0
+    background-image: url('./images/resume-background.jpg')
+    background-size: auto 100vh
+    background-repeat: no-repeat
+    background-color: #756baf
+    width: 100vw
+    height: 100vh
+  .roller-container
+    position: relative
+    .roller-scroll-bar
+      position: fixed
+      top: 20px
+      right: 24px
+      z-index: 1040
+      .roller-nav-link
+        display: inline
+        font-size: 16px
+        color: #ffffff
+        transition: .4s
+        &:hover
+          color: #181942
+        &.roller-nav-link-active
+          position: relative
+          &:before
+            content: ''
+            display: block
+            width: 6px
+            height: 6px
+            background: #181942
+            border-radius: 50%
+            position: absolute
+            top: calc(50% - 3px)
+            right: 0
+            animation: opacity-showing 1s
+    .roller-scroll-mouse
+      position: fixed
+      bottom: 60px
+      right: 40px
+      transition: 1s
+      display: none
+      img
+        width: 46px
+      .roller-scroll-chevron-up
+        cursor: pointer
+        .roller-chevron
+          position: relative
+          top: 0
+          animation: down-to-up .8s ease-in alternate infinite
+      .roller-scroll-chevron-down
+        cursor: pointer
+        .roller-chevron
+          position: relative
+          top: 0
+          animation: up-to-down .8s ease-in alternate infinite
+      .roller-chevron
+        transition: .6s
+        &.roller-chevron-hidden
+          opacity: 0
+    .roller-profile, .roller-tracking, .roller-possibility, .roller-topology, .roller-background
+      background: transparent
+      position: absolute
+      top: 0
+      left: 0
+      padding-top: 128px
+      .roller-title
+        font-size: 60px
+        color: #181942
+      .roller-subtitle
+        width: 60px
+        height: 60px
+        border-radius: 50%
+        font-size: 28px
+      .roller-text
+        font-size: 18px
+    .fade-appear, .fade-enter
+      opacity: 0
+      z-index: 1
+    .fade-appear-active, .fade-enter.fade-enter-active
+      opacity: 1
+      transition: opacity 600ms linear 300ms
+    .fade-exit
+      opacity: 1
+    .fade-exit.fade-exit-active
+      opacity: 0
+      transition: opacity 300ms linear
+
+
+@media (min-width: 992px)
+  .roller-tracking, .roller-topology
+    .roller-push-lg-7
+      left: 58.33333%
+    .roller-pull-lg-5
+      left: -42.66667%
+
+@media (min-width: 1200px)
+  body
+    .roller-navbar, .roller-background
+      background-size: 100vw
+    .roller-container
+      .roller-scroll-bar
+        top: calc(50% - 80px)
+      .roller-scroll-mouse
+        display: block
