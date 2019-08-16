@@ -14,8 +14,8 @@ class Tracking extends Component {
         subtitle: "walking",
         text: (
           <React.Fragment>
-            <p className="m-0">Objects detection with</p>
-            <p>multiple locations.</p>
+            <p className="m-0">Showing objects detection</p>
+            <p>in multiple locations.</p>
           </React.Fragment>
         )
       },
@@ -32,7 +32,8 @@ class Tracking extends Component {
         subtitle: "mouse-pointer",
         text: (
           <React.Fragment>
-            <p>Interaction of mouse cursor.</p>
+            <p className="m-0">Interaction of object to</p>
+            <p>follow your mouse cursor.</p>
           </React.Fragment>
         )
       }
