@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import RadarChart from "./radarChart";
 import CoordinateChart from "./coordinateChart";
+import LineChart from "./lineChart";
 
 class Radar extends Component {
   model = {
@@ -18,7 +19,7 @@ class Radar extends Component {
       case "tracking":
         return <CoordinateChart width={width} height={height} />;
       case "possibility":
-        return <FontAwesomeIcon icon="tools" size="xs" />;
+        return <LineChart width={width} height={height} />;
       case "topology":
         return <FontAwesomeIcon icon="tools" size="xs" />;
       default:
