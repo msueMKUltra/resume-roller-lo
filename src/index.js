@@ -8,7 +8,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import "./libraries/fontAwesome";
 
 ReactDOM.render(
-  <BrowserRouter>
+  <BrowserRouter basename="/resume-roller-lo">
     <App />
   </BrowserRouter>,
   document.getElementById("root")
