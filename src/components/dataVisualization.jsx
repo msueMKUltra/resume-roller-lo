@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import RadarChart from "./radarChart";
 import CoordinateChart from "./coordinateChart";
 import LineChart from "./lineChart";
+import ForceDirectedGraph from "./forceDirectedGraph";
 
 class Radar extends Component {
   model = {
@@ -21,7 +21,7 @@ class Radar extends Component {
       case "possibility":
         return <LineChart width={width} height={height} />;
       case "topology":
-        return <FontAwesomeIcon icon="tools" size="xs" />;
+        return <ForceDirectedGraph width={width} height={height} />;
       default:
         break;
     }
