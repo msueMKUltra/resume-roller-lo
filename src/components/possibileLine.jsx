@@ -1,10 +1,17 @@
 import React, { Component } from "react";
-import { setTheshold, cleanTheshold } from "../uitilities/mouseOver";
+import {
+  getMouseCoordinate,
+  setMouseCoordinate,
+  cleanMouseCoordinate,
+  setTheshold,
+  cleanTheshold
+} from "../uitilities/mouseOver";
 import * as d3 from "d3";
 
 class PossibleLine extends Component {
   axis = React.createRef();
   line = React.createRef();
+  area = React.createRef();
   theshold = React.createRef();
   interface = React.createRef();
   group = null;
@@ -32,7 +39,10 @@ class PossibleLine extends Component {
     const { width, height, possibility } = this.props;
     this.group = d3.select(this.line.current).text("");
     this.mouse = d3.select(this.theshold.current).text("");
-    this.scaleW.domain([0.5, 5.5]).range([60, width - 40]);
+    this.scaleW
+      .domain([0.5, 5.5])
+      .range([60, width - 40])
+      .clamp(true);
     this.scaleH
       .domain([0, 100])
       .range([height - 44, 30])
@@ -58,6 +68,10 @@ class PossibleLine extends Component {
   componentDidUpdate() {
     const { possibility } = this.props;
     this.data.now = possibility;
+  }
+
+  componentWillUnmount() {
+    cleanTheshold();
   }
 
   setPointsData = () => {
@@ -125,6 +139,23 @@ class PossibleLine extends Component {
       .attr("font-size", 14)
       .text("now");
 
+    d3.select(this.area.current)
+      .append("path")
+      .datum([
+        { x: scaleW(0.5), y: scaleH(0) },
+        { x: scaleW(5.5), y: scaleH(0) }
+      ])
+      .attr("fill", "#dcd5fa")
+      .attr("opacity", 0)
+      .attr(
+        "d",
+        d3
+          .area()
+          .x(d => d.x)
+          .y0(scaleH(0))
+          .y1(d => d.y)
+      );
+
     this.mouse
       .append("line")
       .attr("x1", scaleW(0.5))
@@ -142,8 +173,7 @@ class PossibleLine extends Component {
       .attr("dominant-baseline", "middle")
       .attr("x", scaleW(5.5) + 4)
       .attr("y", 0)
-      .attr("fill", "#dcd5fa")
-      .text("xxx");
+      .attr("fill", "#dcd5fa");
   }
 
   renderPath() {
@@ -177,7 +207,8 @@ class PossibleLine extends Component {
       .attr("marker-mid", `url(#${point}`)
       .attr("marker-end", `url(#${point}`)
       .transition()
-      .duration(duration)
+      .delay(duration / 2)
+      .duration(duration / 2)
       .attr("opacity", 1)
       .on("end", this.setPointsData);
 
@@ -186,24 +217,48 @@ class PossibleLine extends Component {
 
   handleMouseOver = () => {
     const scaleH = this.scaleH;
-    const that = this;
+    const target = this.mouse;
+    const text = target.select("text");
     d3.select(this.interface.current).on("mousemove", function() {
       const mouse = d3.mouse(this);
       const invert = scaleH.invert(mouse[1]);
-      setTheshold(~~invert);
-      that.mouse
-        .attr("opacity", 1)
-        .attr("transform", `translate(0, ${scaleH(invert)})`);
-      that.mouse.select("text").text(~~invert + "%");
+      setMouseCoordinate(0, invert);
+      target.attr("opacity", 1).attr("transform", `translate(0, ${mouse[1]})`);
+      text.text(~~invert + "%");
     });
   };
 
   handleMouseOut = () => {
+    cleanMouseCoordinate();
     this.mouse
       .transition()
       .duration(1000)
       .attr("opacity", 0);
-    cleanTheshold();
+  };
+
+  handleClick = () => {
+    const scaleW = this.scaleW;
+    const scaleH = this.scaleH;
+    const percentage = ~~getMouseCoordinate().y;
+    setTheshold(percentage);
+
+    d3.select(this.area.current)
+      .select("path")
+      .datum([
+        { x: scaleW(0.5), y: scaleH(percentage) },
+        { x: scaleW(5.5), y: scaleH(percentage) }
+      ])
+      .transition()
+      .duration(1000)
+      .attr("opacity", 0.2)
+      .attr(
+        "d",
+        d3
+          .area()
+          .x(d => d.x)
+          .y0(scaleH(0))
+          .y1(d => d.y)
+      );
   };
 
   render() {
@@ -211,6 +266,7 @@ class PossibleLine extends Component {
     return (
       <React.Fragment>
         <rect width={width} height={height} rx="10" fill="#666fb4" />
+        <g ref={this.area} />
         <g ref={this.axis} />
         <g ref={this.line} />
         <g ref={this.theshold} opacity="0" />
@@ -222,6 +278,7 @@ class PossibleLine extends Component {
           fill="transparent"
           onMouseOver={this.handleMouseOver}
           onMouseOut={this.handleMouseOut}
+          onClick={this.handleClick}
         />
       </React.Fragment>
     );

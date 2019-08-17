@@ -182,6 +182,8 @@ class RadarChart extends Component {
       .append("circle")
       .attr("class", "circle")
       .attr("fill", "#fff")
+      .attr("stroke", "#81f2d9")
+      .attr("stroke-width", 1)
       .attr("r", 10)
       .attr("cx", d => d.x)
       .attr("cy", d => d.y)
