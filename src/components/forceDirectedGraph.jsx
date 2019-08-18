@@ -75,7 +75,7 @@ class ForceDirectedGraph extends Component {
       .attr("class", "forceCircle")
       .attr("fill", "#81f2d9")
       .attr("r", 18)
-      .attr("cursor", "pointer")
+      .attr("cursor", "grab")
       .attr("filter", "url(#roller-drag-shadow");
 
     this.texts = group
