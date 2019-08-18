@@ -5,6 +5,7 @@ import * as d3 from "d3";
 
 class ForceDirectedGraph extends Component {
   target = React.createRef();
+  hover = React.createRef();
   rect = {
     width: 400,
     height: 480
@@ -12,7 +13,9 @@ class ForceDirectedGraph extends Component {
   group = null;
   lines = null;
   circles = null;
+  texts = null;
   simulation = null;
+  isLabelVisable = false;
   nodes = [
     { name: "node1" },
     { name: "node2" },
@@ -61,7 +64,8 @@ class ForceDirectedGraph extends Component {
       .append("line")
       .classed("forceLine", true)
       .attr("stroke", "#81f2d9")
-      .attr("stroke-width", 4);
+      .attr("stroke-width", 4)
+      .attr("pointer-events", "none");
 
     this.circles = group
       .selectAll(".forceCircle")
@@ -74,6 +78,22 @@ class ForceDirectedGraph extends Component {
       .attr("cursor", "pointer")
       .attr("filter", "url(#roller-drag-shadow");
 
+    this.texts = group
+      .selectAll(".forceText")
+      .data(this.nodes)
+      .enter()
+      .append("text")
+      .attr("dx", 22)
+      .attr("dy", 0)
+      .attr("font-size", 14)
+      .attr("text-anchor", "start")
+      .attr("dominant-baseline", "middle")
+      .attr("class", "forceText")
+      .attr("fill", "#fff")
+      .attr("pointer-events", "none")
+      .attr("filter", "url(#roller-hover-shadow")
+      .text(d => d.name);
+
     const drag = d3
       .drag()
       .on("start", this.dragStarted)
@@ -82,12 +102,18 @@ class ForceDirectedGraph extends Component {
 
     this.circles
       .call(drag)
+      .on("mouseover", () => (this.isLabelVisable = true))
+      .on("mouseout", () => (this.isLabelVisable = false))
       .filter((d, i) => i === 0)
       .attr("fill", "#dcd5fa")
       .each(d => {
         d.fx = width / 2;
         d.fy = height / 2;
       });
+
+    d3.select(this.hover.current)
+      .on("mouseover", () => (this.isLabelVisable = true))
+      .on("mouseout", () => (this.isLabelVisable = false));
   }
 
   ticked = () => {
@@ -97,13 +123,15 @@ class ForceDirectedGraph extends Component {
       .attr("x2", d => d.target.x)
       .attr("y2", d => d.target.y);
     this.circles.attr("cx", d => d.x).attr("cy", d => d.y);
+    this.texts
+      .attr("x", d => d.x)
+      .attr("y", d => d.y)
+      .classed("roller-label-active", this.isLabelVisable);
+
+    this.simulation.alphaTarget(0.3).restart();
   };
 
   dragStarted = d => {
-    // console.log(d3.event.active); // 0
-    // d3.event 為當前觸發的事件，active => 0為尚未執行，1為執行中
-    if (!d3.event.active) this.simulation.alphaTarget(0.3).restart();
-
     this.circles.each(d => {
       d.fx = null; // 用來移動時，將每個點預設為原本會動狀態
       d.fy = null; // 用來移動時，將每個點預設為原本會動狀態
@@ -112,20 +140,17 @@ class ForceDirectedGraph extends Component {
     d.fx = d.x; // 開始時，設定移動點的位置為當前位置
     d.fy = d.y; // 開始時，設定移動點的位置為當前位置
   };
+
   dragged = d => {
     const { width, height } = this.rect;
-    // console.log(d3.event.active); // 1
-    d.fx =
-      d3.event.x < 20 ? 20 : d3.event.x > width - 20 ? width - 20 : d3.event.x; // 拖曳時，設定移動點的位置為滑鼠的位置
-    d.fy =
-      d3.event.y < 20
-        ? 20
-        : d3.event.y > height - 20
-        ? height - 20
-        : d3.event.y; // 拖曳時，設定移動點的位置為滑鼠的位置
+    const diff = 20;
+    const x = d3.event.x;
+    const y = d3.event.y;
+    d.fx = x < diff ? diff : x > width - diff ? width - diff : x; // 拖曳時，設定移動點的位置為滑鼠的位置
+    d.fy = y < diff ? diff : y > height - diff ? height - diff : y; // 拖曳時，設定移動點的位置為滑鼠的位置
   };
-  dragEnded = (d, i) => {
-    // console.log(d3.event.active); // 0
+
+  dragEnded = () => {
     if (!d3.event.active) this.simulation.alphaTarget(0);
     // d.fx = null; // 結束時，設為null，則會恢復成預設狀態
     // d.fy = null; // 結束時，設為null，則會恢復成預設狀態
@@ -143,19 +168,26 @@ class ForceDirectedGraph extends Component {
           <filter id="roller-drag-shadow">
             <feDropShadow dx="0" dy="0" stdDeviation="2" floodColor="#181942" />
           </filter>
+          <filter id="roller-hover-shadow">
+            <feDropShadow dx="0" dy="0" stdDeviation="1" floodColor="#181942" />
+          </filter>
           <linearGradient
             id="roller-gradient-right-top"
-            gradientTransform="rotate(-50)"
+            gradientUnits="userSpaceOnUse"
+            gradientTransform="skewX(40)"
           >
             <stop offset="0%" stopColor="#fff" stopOpacity="0.1" />
-            <stop offset="100%" stopColor="#5260a7" stopOpacity="0" />
+            <stop offset="60%" stopColor="#fff" stopOpacity="0" />
+            <stop offset="100%" stopColor="#fff" stopOpacity="0" />
           </linearGradient>
           <linearGradient
             id="roller-gradient-left-bottom"
-            gradientTransform="rotate(140)"
+            gradientUnits="userSpaceOnUse"
+            gradientTransform="rotate(180) skewX(40)"
           >
             <stop offset="0%" stopColor="#fff" stopOpacity="0.1" />
-            <stop offset="100%" stopColor="#5260a7" stopOpacity="0" />
+            <stop offset="60%" stopColor="#fff" stopOpacity="0" />
+            <stop offset="100%" stopColor="#fff" stopOpacity="0" />
           </linearGradient>
         </defs>
         <g transform={`translate(${(width - rw) / 2}, ${(height - rh) / 2})`}>
@@ -183,11 +215,17 @@ class ForceDirectedGraph extends Component {
             height={rh / 2}
             fill="url(#roller-gradient-left-bottom)"
           />
+          <rect
+            ref={this.hover}
+            width={rw}
+            height={rh}
+            x="0"
+            y="0"
+            rx="10"
+            opacity="0"
+          />
+          <g ref={this.target} />
         </g>
-        <g
-          ref={this.target}
-          transform={`translate(${(width - rw) / 2}, ${(height - rh) / 2})`}
-        />
       </React.Fragment>
     );
   }

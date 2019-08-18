@@ -276,6 +276,7 @@ class PossibleLine extends Component {
           height={height}
           rx="10"
           fill="transparent"
+          cursor="pointer"
           onMouseOver={this.handleMouseOver}
           onMouseOut={this.handleMouseOut}
           onClick={this.handleClick}
