@@ -23,16 +23,17 @@ class Possibility extends Component {
         subtitle: "chart-line",
         text: (
           <React.Fragment>
-            <p className="m-0">Path changing in</p>
-            <p>real time.</p>
+            <p className="m-0">Path changing</p>
+            <p>in real time.</p>
           </React.Fragment>
         )
       },
       {
-        subtitle: "tags",
+        subtitle: "hand-pointer",
         text: (
           <React.Fragment>
-            <p>Axis and labels display.</p>
+            <p className="m-0">Setting theshold</p>
+            <p>at line chart.</p>
           </React.Fragment>
         )
       }

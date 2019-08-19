@@ -53,9 +53,9 @@ class ForceDirectedGraph extends Component {
       .forceSimulation(this.nodes)
       .force("charge", charge)
       .force("center", center)
-      .force("links", link);
-
-    this.simulation.on("tick", this.ticked);
+      .force("links", link)
+      .alphaTarget(0.3)
+      .on("tick", this.ticked);
 
     this.lines = group
       .selectAll(".forceLine")
@@ -127,11 +127,11 @@ class ForceDirectedGraph extends Component {
       .attr("x", d => d.x)
       .attr("y", d => d.y)
       .classed("roller-label-active", this.isLabelVisable);
-
-    this.simulation.alphaTarget(0.3).restart();
   };
 
   dragStarted = d => {
+    // d3.event 為當前觸發的事件，active => 0為尚未執行，1為執行中
+    if (!d3.event.active) this.simulation.alphaTarget(0.3).restart();
     this.circles.each(d => {
       d.fx = null; // 用來移動時，將每個點預設為原本會動狀態
       d.fy = null; // 用來移動時，將每個點預設為原本會動狀態
@@ -151,7 +151,7 @@ class ForceDirectedGraph extends Component {
   };
 
   dragEnded = () => {
-    if (!d3.event.active) this.simulation.alphaTarget(0);
+    // if (!d3.event.active) this.simulation.alphaTarget(0);
     // d.fx = null; // 結束時，設為null，則會恢復成預設狀態
     // d.fy = null; // 結束時，設為null，則會恢復成預設狀態
   };

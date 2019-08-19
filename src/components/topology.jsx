@@ -11,11 +11,20 @@ class Topology extends Component {
     circleColor: "#355891",
     contents: [
       {
+        subtitle: "bezier-curve",
+        text: (
+          <React.Fragment>
+            <p className="m-0">Showing labels at</p>
+            <p>Force-directed graph.</p>
+          </React.Fragment>
+        )
+      },
+      {
         subtitle: "glass-cheers",
         text: (
           <React.Fragment>
-            <p className="m-0">Showing relationship between</p>
-            <p>parents and children.</p>
+            <p className="m-0">Connecting relationship</p>
+            <p>between parents and children.</p>
           </React.Fragment>
         )
       },
@@ -25,14 +34,6 @@ class Topology extends Component {
           <React.Fragment>
             <p className="m-0">Dragging the target point</p>
             <p>while changing location.</p>
-          </React.Fragment>
-        )
-      },
-      {
-        subtitle: "bezier-curve",
-        text: (
-          <React.Fragment>
-            <p>Force-diagram display.</p>
           </React.Fragment>
         )
       }
