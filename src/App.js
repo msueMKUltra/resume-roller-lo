@@ -20,6 +20,7 @@ class App extends Component {
         <div className="roller-background fixed-top" />
         <div className="container roller-container">
           <Route
+            path="**/*"
             render={({ location }) => (
               <React.Fragment>
                 <TransitionGroup>
