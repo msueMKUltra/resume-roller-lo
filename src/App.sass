@@ -62,26 +62,37 @@ body
       position: fixed
       bottom: 60px
       right: 40px
-      transition: 1s
       display: none
-      img
-        width: 46px
-      .roller-scroll-chevron-up
-        cursor: pointer
+      .roller-scroll-guide
+        transition: 1s
+        img
+          width: 46px
+        .roller-scroll-chevron-up
+          cursor: pointer
+          .roller-chevron
+            position: relative
+            top: 0
+            animation: down-to-up .8s ease-in alternate infinite
+        .roller-scroll-chevron-down
+          cursor: pointer
+          .roller-chevron
+            position: relative
+            top: 0
+            animation: up-to-down .8s ease-in alternate infinite
         .roller-chevron
-          position: relative
-          top: 0
-          animation: down-to-up .8s ease-in alternate infinite
-      .roller-scroll-chevron-down
-        cursor: pointer
-        .roller-chevron
-          position: relative
-          top: 0
-          animation: up-to-down .8s ease-in alternate infinite
-      .roller-chevron
-        transition: .6s
-        &.roller-chevron-hidden
-          opacity: 0
+          transition: .6s
+          &.roller-chevron-hidden
+            opacity: 0
+      .roller-scroll-ban
+        position: absolute
+        width: 16px
+        height: 24px
+        top: 0
+        left: 0
+        bottom: 0
+        right: 0
+        margin: auto
+        transition: 1s
     .roller-profile, .roller-tracking, .roller-possibility, .roller-topology, .roller-background
       background: transparent
       position: absolute

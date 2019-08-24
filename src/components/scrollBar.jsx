@@ -110,33 +110,44 @@ class ScrollBar extends Component {
             </NavLink>
           </li>
         </ul>
-        <div className="roller-scroll-mouse" style={{ opacity: mouseOpacity }}>
+        <div className="roller-scroll-mouse">
           <div
-            className="text-center roller-scroll-chevron-up"
-            onClick={changeLinkUp}
+            className="roller-scroll-guide"
+            style={{ opacity: mouseOpacity + 0.1 }}
           >
-            <FontAwesomeIcon
-              icon="chevron-up"
-              className={
-                isChevronUpHidden(this.props.pathName)
-                  ? "roller-chevron roller-chevron-hidden"
-                  : "roller-chevron"
-              }
-            />
+            <div
+              className="text-center roller-scroll-chevron-up"
+              onClick={changeLinkUp}
+            >
+              <FontAwesomeIcon
+                icon="chevron-up"
+                className={
+                  isChevronUpHidden(this.props.pathName)
+                    ? "roller-chevron roller-chevron-hidden"
+                    : "roller-chevron"
+                }
+              />
+            </div>
+            <img src={mouse} alt="mouse" />
+            <div
+              className="text-center roller-scroll-chevron-down"
+              onClick={changeLinkDown}
+            >
+              <FontAwesomeIcon
+                icon="chevron-down"
+                className={
+                  isChevronDownHidden(this.props.pathName)
+                    ? "roller-chevron roller-chevron-hidden"
+                    : "roller-chevron"
+                }
+              />
+            </div>
           </div>
-          <img src={mouse} alt="mouse" />
           <div
-            className="text-center roller-scroll-chevron-down"
-            onClick={changeLinkDown}
+            className="roller-scroll-ban"
+            style={{ opacity: 1 - mouseOpacity }}
           >
-            <FontAwesomeIcon
-              icon="chevron-down"
-              className={
-                isChevronDownHidden(this.props.pathName)
-                  ? "roller-chevron roller-chevron-hidden"
-                  : "roller-chevron"
-              }
-            />
+            <FontAwesomeIcon icon="ban" />
           </div>
         </div>
       </React.Fragment>
