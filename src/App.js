@@ -6,6 +6,7 @@ import Profile from "./components/profile";
 import Tracking from "./components/tracking";
 import Possibility from "./components/possibility";
 import Topology from "./components/topology";
+import Tagging from "./components/tagging";
 import NotFound from "./components/notFound";
 import ScrollBar from "./components/scrollBar";
 import "./App.sass";
@@ -33,6 +34,7 @@ class App extends Component {
                       <Route path="/tracking" component={Tracking} />
                       <Route path="/possibility" component={Possibility} />
                       <Route path="/topology" component={Topology} />
+                      <Route path="/tagging" component={Tagging} />
                       <Route path="/not-found" component={NotFound} />
                       <Redirect from="/" exact to="/profile" />
                       <Redirect to="/not-found" />
