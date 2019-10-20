@@ -1,0 +1,72 @@
+https://philipzheng.gitbooks.io/docker_practice/content/basic_concept/repository.html
+
+
+https://scotch.io/tutorials/build-a-blog-using-expressjs-and-react-in-30-minutes
+
+
+https://www.youtube.com/watch?v=v0t42xBIYIs&t=1216s
+
+https://www.youtube.com/watch?v=hP77Rua1E0c&t=824s
+
+
+* 		#!/bin/bash
+* 		# Delete all containers
+* 		docker rm $(docker ps -a -q)
+* 		# Stop all containers
+*                 docker stop $(docker ps -a -q)
+* 		# Delete all images
+* 		docker rmi $(docker images -q)
+*                  # Delete all unused volume
+* 		docker volume prune
+
+
+https://dev.to/nburgess/creating-a-react-app-with-react-router-and-an-express-backend-33l3
+
+docker pull mongo 
+
+docker build -t not-coffee-docker .
+
+docker volume create --name data
+
+docker volume ls
+
+docker run -d -p 27017:27017 -v data:/data/dbDocker --name mongodb mongo
+
+docker run -d -p 27017:27017 --volumes-from mongodb --name mongodb2 mongo
+
+docker run -d -p 80:3000 --restart=always --link mongodb:mongo --name not-coffee-docker-mongo not-coffee-docker
+
+
+docker stop not-coffee-docker-mongo
+docker rm not-coffee-docker-mongo
+docker image rm not-coffee-docker
+
+docker restart mongodb
+
+docker exec -it mongodb mongo
+
+https://docs.mongodb.com/manual/tutorial/access-mongo-shell-help/
+
+show  dbs
+use vidly
+show collections
+
+db.genres.find()
+db.genres.insertMany([
+  { "name": "Comedy" },
+  { "name": "Action" },
+  { "name": "Romance" },
+  { "name": "Thriller" },
+  { "name": "Drama" }
+]
+) 
+
+https://github.com/getify/You-Dont-Know-JS/blob/2nd-ed/es-next-beyond/README.md
+https://blog.techbridge.cc/2018/11/10/javascript-hoisting/
+https://eddychang.me/es6-tdz/
+
+http://paperjs.org/reference/pathitem/#reorient
+
+https://stackoverflow.com/questions/27850703/canvas-ispointinpath-with-multiple-paths
+
+https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
