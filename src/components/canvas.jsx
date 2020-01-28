@@ -50,13 +50,15 @@ class Canvas extends Component {
       });
       path.closePath();
       ctx.strokeStyle = item.color;
+      console.log(item.isSelected ? 10 : 3);
+      ctx.lineWidth = item.isSelected ? 10 : 3;
       ctx.stroke(path);
       this.paths.push(path);
     });
     const that = this;
     cvs.addEventListener(
-      "click",
-      function(e) {
+      "dblclick",
+      e => {
         const p = that.getEventPosition(e);
         // console.log(p.x);
         // console.log(p.y);
@@ -66,13 +68,33 @@ class Canvas extends Component {
         //     console.log(p.y);
         //   }
         // });
+        let isNewPath = true;
         that.paths.forEach((path, index) => {
           if (ctx.isPointInPath(path, p.x, p.y)) {
-            console.log("click", index);
+            console.log("dblclick", index);
             // that.selectedIndex = index;
+            isNewPath = false;
             handleSelect(index);
           }
         });
+        if (isNewPath) this.props.handleAdding({ x: p.x, y: p.y });
+      },
+      false
+    );
+    cvs.addEventListener(
+      "click",
+      e => {
+        const p = that.getEventPosition(e);
+        let isNewPath = true;
+        let clickIndex = null;
+        that.paths.forEach((path, index) => {
+          if (ctx.isPointInPath(path, p.x, p.y)) {
+            isNewPath = false;
+            clickIndex = index;
+          }
+        });
+        if (isNewPath) this.props.handleAdding({ x: p.x, y: p.y });
+        else handleSelect(clickIndex, "focus");
       },
       false
     );
@@ -85,7 +107,6 @@ class Canvas extends Component {
     ctx.clearRect(0, 0, 500, 500);
     this.paths.length = 0;
     lists.forEach((item, i) => {
-      console.log("rerender", i);
       let path = new Path2D();
       item.points.forEach((point, index) => {
         if (index) path.lineTo(point.x, point.y);

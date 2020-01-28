@@ -13,6 +13,7 @@ class Tagging extends Component {
   state = {
     isEditing: false,
     selectedIndex: null,
+    startPoint: null,
     circles: [],
     taggingList: [
       {
@@ -48,19 +49,40 @@ class Tagging extends Component {
     setCurrentTarget(this.props, this.ref.current);
   }
 
-  handleSelect = index => {
-    const isEditing = index === null ? false : true;
-    this.setState({ selectedIndex: index, isEditing });
-    if (index !== null) return;
-    const { targetIndex, locations } = getCirclesLocation();
-    const taggingList = [...this.state.taggingList];
-    if (targetIndex === null) return;
-    taggingList[targetIndex].points = locations;
-    this.setState({ taggingList });
+  handleSelect = (index, type) => {
+    switch (type) {
+      case "focus":
+        const taggingList = this.state.taggingList.map((d, i) => {
+          if (i === index) {
+            d.isSelected = true;
+          }
+          return d;
+        });
+        console.log(index);
+        this.setState({ taggingList });
+        break;
+    }
+    // const isEditing = index === null ? false : true;
+    // this.setState({ selectedIndex: index, isEditing });
+    // if (index !== null) return;
+    // const { targetIndex, locations } = getCirclesLocation();
+    // const taggingList = [...this.state.taggingList];
+    // if (targetIndex === null) return;
+    // taggingList[targetIndex].points = locations;
+    // this.setState({ taggingList });
+  };
+
+  cleanStartPoint = () => {
+    this.setState({ startPoint: null });
+  };
+
+  handleAdding = startPoint => {
+    console.log("adding", startPoint);
+    this.setState({ startPoint });
   };
 
   render() {
-    const { taggingList, selectedIndex, isEditing } = this.state;
+    const { taggingList, selectedIndex, isEditing, startPoint } = this.state;
     setCirclesData(selectedIndex, taggingList);
     const circles = getCirclesData();
     return (
@@ -68,26 +90,26 @@ class Tagging extends Component {
         <div className="row">
           <div className="col">
             <p>
-              {selectedIndex !== null
-                ? taggingList[selectedIndex].name
-                : "nope"}
+              {selectedIndex !== null ? taggingList[selectedIndex].name : "--"}
             </p>
           </div>
         </div>
         <div className="row">
           <div className="col roller-tagging-container">
-            <Svg
+            {/* <Svg
               circles={circles}
               taggingList={taggingList}
               selectedIndex={selectedIndex}
               handleSelect={this.handleSelect}
               isEditing={isEditing}
-            ></Svg>
+              startPoint={startPoint}
+              cleanStartPoint={this.cleanStartPoint}
+            ></Svg> */}
             <Canvas
-              circles={circles}
               taggingList={taggingList}
               selectedIndex={selectedIndex}
               handleSelect={this.handleSelect}
+              handleAdding={this.handleAdding}
               isEditing={isEditing}
             ></Canvas>
           </div>

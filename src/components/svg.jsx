@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Circles from "./circles";
+import Circles2 from "./circles2";
 import { setCirclesLocation } from "../uitilities/handleCircles";
 
 class Svg extends Component {
@@ -13,7 +14,14 @@ class Svg extends Component {
   componentDidUpdate() {}
 
   render() {
-    const { selectedIndex, handleSelect, circles, isEditing } = this.props;
+    const {
+      selectedIndex,
+      handleSelect,
+      circles,
+      isEditing,
+      startPoint,
+      cleanStartPoint
+    } = this.props;
     console.log(circles);
     return (
       <div
@@ -21,12 +29,17 @@ class Svg extends Component {
         onDoubleClick={() => {
           setCirclesLocation(selectedIndex);
           handleSelect(null);
+          if (startPoint) cleanStartPoint();
         }}
       >
         <svg ref={this.ref} width="500" height="500">
           {
             <React.Fragment>
-              <Circles></Circles>
+              {startPoint === null ? (
+                <Circles />
+              ) : (
+                <Circles2 startPoint={startPoint} />
+              )}
             </React.Fragment>
           }
           )}
