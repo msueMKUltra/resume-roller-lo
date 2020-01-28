@@ -33,12 +33,27 @@ class Profile extends Component {
         subtitle: "briefcase",
         text: (
           <React.Fragment>
-            <p className="font-weight-bolder m-0">2017 - 2019</p>
-            <p className="m-0 pl-4">GOOEE</p>
-            <p className="font-italic pl-4">Front-end Developer</p>
-            <p className="font-weight-bolder m-0">2016 - 2017</p>
-            <p className="m-0 pl-4">Blue Well</p>
-            <p className="font-italic pl-4">PHP Front-end Developer</p>
+            <p className="m-0">
+              <span className="font-weight-bolder font-italic ">
+                2019 - now
+              </span>
+              <span className="pl-2">FLOW</span>
+            </p>
+            <p className="pl-4">Senior Front-end Developer</p>
+            <p className="m-0">
+              <span className="font-weight-bolder font-italic ">
+                2017 - 2019
+              </span>
+              <span className="pl-2">GOOEE</span>
+            </p>
+            <p className="pl-4">Front-end Developer</p>
+            <p className="m-0">
+              <span className="font-weight-bolder font-italic ">
+                2016 - 2017
+              </span>
+              <span className="pl-2">BLUE WELL</span>
+            </p>
+            <p className="pl-4">PHP Front-end Developer</p>
           </React.Fragment>
         )
       },
@@ -46,9 +61,13 @@ class Profile extends Component {
         subtitle: "graduation-cap",
         text: (
           <React.Fragment>
-            <p className="font-weight-bolder m-0">2012 - 2015</p>
-            <p className="m-0 pl-4">National Chung Cheng University</p>
-            <p className="font-italic pl-4">Master of Computer Science</p>
+            <p className="m-0">
+              <span className="font-weight-bolder font-italic">
+                2012 - 2015
+              </span>
+              <span className="pl-2">CCU</span>
+            </p>
+            <p className="pl-4">Master of Computer Science</p>
           </React.Fragment>
         )
       }

@@ -32,8 +32,11 @@ class Tracking extends Component {
         subtitle: "mouse-pointer",
         text: (
           <React.Fragment>
-            <p className="m-0">Interaction of object to</p>
-            <p>follow your mouse cursor.</p>
+            <p className="m-0">
+              <b>Following</b>
+              <span> your mouse</span>
+            </p>
+            <p>with object interaction.</p>
           </React.Fragment>
         )
       }

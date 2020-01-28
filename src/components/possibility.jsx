@@ -32,7 +32,10 @@ class Possibility extends Component {
         subtitle: "hand-pointer",
         text: (
           <React.Fragment>
-            <p className="m-0">Setting theshold</p>
+            <p className="m-0">
+              <b>Setting</b>
+              <span> theshold</span>
+            </p>
             <p>at line chart.</p>
           </React.Fragment>
         )

@@ -120,7 +120,6 @@ class CoordinateChart extends Component {
             y="0"
             rx="10"
             opacity="0"
-            cursor="crosshair"
             onMouseOver={this.handleMouseOver}
             onMouseOut={this.handleMouseOut}
           />

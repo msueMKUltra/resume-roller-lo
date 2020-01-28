@@ -29,10 +29,13 @@ class Topology extends Component {
         )
       },
       {
-        subtitle: "hand-pointer",
+        subtitle: "hand-paper",
         text: (
           <React.Fragment>
-            <p className="m-0">Dragging the target point</p>
+            <p className="m-0">
+              <b>Dragging</b>
+              <span> the target node</span>
+            </p>
             <p>while changing location.</p>
           </React.Fragment>
         )
