@@ -17,11 +17,7 @@ class Profile extends Component {
           <React.Fragment>
             <p className="m-0">
               <span className="font-weight-bolder font-italic">
-                {(() => {
-                  const now = new Date().getTime();
-                  const then = new Date(2016, 10, 26).getTime();
-                  return ((now - then) / 1000 / 60 / 60 / 24 / 365).toFixed(1);
-                })()}
+                {this.getWorkingYears()}
               </span>
               <span> years of experience</span>
             </p>
@@ -77,6 +73,12 @@ class Profile extends Component {
 
   componentDidMount() {
     setCurrentTarget(this.props, this.ref.current);
+  }
+
+  getWorkingYears() {
+    const now = new Date().getTime();
+    const then = new Date(2016, 10, 26).getTime();
+    return ((now - then) / 1000 / 60 / 60 / 24 / 365).toFixed(1);
   }
 
   render() {
