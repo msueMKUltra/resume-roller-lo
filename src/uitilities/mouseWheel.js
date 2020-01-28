@@ -1,10 +1,4 @@
-const navArray = [
-  "/profile",
-  "/tracking",
-  "/possibility",
-  "/topology",
-  "/tagging"
-];
+const navArray = ["/profile", "/tracking", "/possibility", "/topology"];
 let thisProps = null;
 let currentElement = null;
 let currentIndex = null;

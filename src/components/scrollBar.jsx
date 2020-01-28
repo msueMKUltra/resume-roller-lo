@@ -109,16 +109,6 @@ class ScrollBar extends Component {
               TOPOLOGY
             </NavLink>
           </li>
-          <li className="nav-item my-1 my-xl-2">
-            <NavLink
-              className="nav-link roller-nav-link"
-              activeStyle={{ color: "#181942" }}
-              activeClassName="roller-nav-link-active"
-              to="/tagging"
-            >
-              TAGGING
-            </NavLink>
-          </li>
         </ul>
         <div className="roller-scroll-mouse">
           <div
