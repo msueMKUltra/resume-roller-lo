@@ -10,6 +10,8 @@ import NotFound from "./components/notFound";
 import ScrollBar from "./components/scrollBar";
 import "./App.sass";
 
+console.log(process.env.PUBLIC_URL);
+
 class App extends Component {
   mouse = React.createRef();
   state = {};
@@ -49,12 +51,8 @@ class App extends Component {
                         path={process.env.PUBLIC_URL + "/not-found"}
                         component={NotFound}
                       />
-                      <Redirect
-                        from={process.env.PUBLIC_URL + "/"}
-                        exact
-                        to="/profile"
-                      />
-                      <Redirect to={process.env.PUBLIC_URL + "/not-found"} />
+                      <Redirect from="/" exact to="/profile" />
+                      <Redirect to="/not-found" />
                     </Switch>
                   </CSSTransition>
                 </TransitionGroup>
