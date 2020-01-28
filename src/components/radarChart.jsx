@@ -207,6 +207,7 @@ class RadarChart extends Component {
       .datum(locations[loop])
       .transition()
       .ease(d3.easeLinear)
+      .delay(() => (loop === 1 ? 400 : 0))
       .duration(400)
       .attr("d", area)
       .on("end", () => {
