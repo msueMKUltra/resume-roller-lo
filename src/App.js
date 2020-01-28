@@ -10,8 +10,6 @@ import NotFound from "./components/notFound";
 import ScrollBar from "./components/scrollBar";
 import "./App.sass";
 
-console.log(process.env.PUBLIC_URL);
-
 class App extends Component {
   mouse = React.createRef();
   state = {};
@@ -38,6 +36,10 @@ class App extends Component {
                         <Route path="/topology" component={Topology} />
                         <Route path="/not-found" component={NotFound} />
                         <Redirect from="/" exact to="/profile" />
+                        <Redirect from="/profile" exact to="/profile" />
+                        <Redirect from="/tracking" exact to="/tracking" />
+                        <Redirect from="/possibility" exact to="/possibility" />
+                        <Redirect from="/topology" exact to="/topology" />
                         <Redirect to="/not-found" />
                       </Switch>
                     </CSSTransition>
