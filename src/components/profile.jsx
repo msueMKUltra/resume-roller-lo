@@ -11,12 +11,19 @@ class Profile extends Component {
     circleColor: "#1b536e",
     contents: [
       {
-        subtitle: 2.6,
-        isWord: true,
+        subtitle: "clock",
+        isWord: false,
         text: (
           <React.Fragment>
             <p className="m-0">
-              <strong>Years</strong> of experience
+              <span className="font-weight-bolder font-italic">
+                {(() => {
+                  const now = new Date().getTime();
+                  const then = new Date(2016, 10, 26).getTime();
+                  return ((now - then) / 1000 / 60 / 60 / 24 / 365).toFixed(1);
+                })()}
+              </span>
+              <span> years of experience</span>
             </p>
             <p> for Front-end development.</p>
           </React.Fragment>
