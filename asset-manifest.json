@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/resume-roller-lo/static/css/main.53c97aca.chunk.css",
-    "main.js": "/resume-roller-lo/static/js/main.df13a430.chunk.js",
-    "main.js.map": "/resume-roller-lo/static/js/main.df13a430.chunk.js.map",
-    "runtime~main.js": "/resume-roller-lo/static/js/runtime~main.d4cd0d81.js",
-    "runtime~main.js.map": "/resume-roller-lo/static/js/runtime~main.d4cd0d81.js.map",
-    "static/css/2.22a7d4ef.chunk.css": "/resume-roller-lo/static/css/2.22a7d4ef.chunk.css",
-    "static/js/2.965b9ab8.chunk.js": "/resume-roller-lo/static/js/2.965b9ab8.chunk.js",
-    "static/js/2.965b9ab8.chunk.js.map": "/resume-roller-lo/static/js/2.965b9ab8.chunk.js.map",
-    "index.html": "/resume-roller-lo/index.html",
-    "precache-manifest.fb3aa1f755e229d8689fd68bf8532b3a.js": "/resume-roller-lo/precache-manifest.fb3aa1f755e229d8689fd68bf8532b3a.js",
-    "service-worker.js": "/resume-roller-lo/service-worker.js",
-    "static/css/2.22a7d4ef.chunk.css.map": "/resume-roller-lo/static/css/2.22a7d4ef.chunk.css.map",
-    "static/css/main.53c97aca.chunk.css.map": "/resume-roller-lo/static/css/main.53c97aca.chunk.css.map",
-    "static/media/experience.png": "/resume-roller-lo/static/media/experience.cd8979e5.png",
-    "static/media/photoshop.png": "/resume-roller-lo/static/media/photoshop.c54971e1.png",
-    "static/media/App.sass": "/resume-roller-lo/static/media/resume-background.0dedd35d.jpg"
+    "main.css": "/static/css/main.b3fe356c.chunk.css",
+    "main.js": "/static/js/main.6a03aa6e.chunk.js",
+    "main.js.map": "/static/js/main.6a03aa6e.chunk.js.map",
+    "runtime~main.js": "/static/js/runtime~main.0f6fd38e.js",
+    "runtime~main.js.map": "/static/js/runtime~main.0f6fd38e.js.map",
+    "static/css/2.22a7d4ef.chunk.css": "/static/css/2.22a7d4ef.chunk.css",
+    "static/js/2.965b9ab8.chunk.js": "/static/js/2.965b9ab8.chunk.js",
+    "static/js/2.965b9ab8.chunk.js.map": "/static/js/2.965b9ab8.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.3f6f5558676fefd037d764e17492b0f6.js": "/precache-manifest.3f6f5558676fefd037d764e17492b0f6.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.22a7d4ef.chunk.css.map": "/static/css/2.22a7d4ef.chunk.css.map",
+    "static/css/main.b3fe356c.chunk.css.map": "/static/css/main.b3fe356c.chunk.css.map",
+    "static/media/experience.png": "/static/media/experience.cd8979e5.png",
+    "static/media/photoshop.png": "/static/media/photoshop.c54971e1.png",
+    "static/media/App.sass": "/static/media/resume-background.0dedd35d.jpg"
   }
 }
