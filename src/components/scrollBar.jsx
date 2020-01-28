@@ -74,7 +74,7 @@ class ScrollBar extends Component {
               className="nav-link roller-nav-link"
               activeStyle={{ color: "#181942" }}
               activeClassName="roller-nav-link-active"
-              to="/profile"
+              to={process.env.PUBLIC_URL + "/profile"}
             >
               PROFILE
             </NavLink>
@@ -84,7 +84,7 @@ class ScrollBar extends Component {
               className="nav-link roller-nav-link"
               activeStyle={{ color: "#181942" }}
               activeClassName="roller-nav-link-active"
-              to="/tracking"
+              to={process.env.PUBLIC_URL + "/tracking"}
             >
               TRACKING
             </NavLink>
@@ -94,7 +94,7 @@ class ScrollBar extends Component {
               className="nav-link roller-nav-link"
               activeStyle={{ color: "#181942" }}
               activeClassName="roller-nav-link-active"
-              to="/possibility"
+              to={process.env.PUBLIC_URL + "/possibility"}
             >
               POSSIBILITY
             </NavLink>
@@ -104,7 +104,7 @@ class ScrollBar extends Component {
               className="nav-link roller-nav-link"
               activeStyle={{ color: "#181942" }}
               activeClassName="roller-nav-link-active"
-              to="/topology"
+              to={process.env.PUBLIC_URL + "/topology"}
             >
               TOPOLOGY
             </NavLink>
