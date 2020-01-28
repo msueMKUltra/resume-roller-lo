@@ -29,13 +29,32 @@ class App extends Component {
                     classNames="fade"
                   >
                     <Switch location={location}>
-                      <Route path="/profile" component={Profile} />
-                      <Route path="/tracking" component={Tracking} />
-                      <Route path="/possibility" component={Possibility} />
-                      <Route path="/topology" component={Topology} />
-                      <Route path="/not-found" component={NotFound} />
-                      <Redirect from="/" exact to="/profile" />
-                      <Redirect to="/not-found" />
+                      <Route
+                        path={process.env.PUBLIC_URL + "/profile"}
+                        component={Profile}
+                      />
+                      <Route
+                        path={process.env.PUBLIC_URL + "/tracking"}
+                        component={Tracking}
+                      />
+                      <Route
+                        path={process.env.PUBLIC_URL + "/possibility"}
+                        component={Possibility}
+                      />
+                      <Route
+                        path={process.env.PUBLIC_URL + "/topology"}
+                        component={Topology}
+                      />
+                      <Route
+                        path={process.env.PUBLIC_URL + "/not-found"}
+                        component={NotFound}
+                      />
+                      <Redirect
+                        from={process.env.PUBLIC_URL + "/"}
+                        exact
+                        to="/profile"
+                      />
+                      <Redirect to={process.env.PUBLIC_URL + "/not-found"} />
                     </Switch>
                   </CSSTransition>
                 </TransitionGroup>
