@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, Redirect, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import NavBar from "./components/navBar";
 import Profile from "./components/profile";
@@ -21,45 +21,32 @@ class App extends Component {
         <NavBar />
         <div className="roller-background fixed-top" />
         <div className="container roller-container">
-          <Route
-            render={({ location }) => (
-              <React.Fragment>
-                <TransitionGroup>
-                  <CSSTransition
-                    key={location.key}
-                    timeout={600}
-                    classNames="fade"
-                  >
-                    <Switch location={location}>
-                      <Route
-                        path={process.env.PUBLIC_URL + "/profile"}
-                        component={Profile}
-                      />
-                      <Route
-                        path={process.env.PUBLIC_URL + "/tracking"}
-                        component={Tracking}
-                      />
-                      <Route
-                        path={process.env.PUBLIC_URL + "/possibility"}
-                        component={Possibility}
-                      />
-                      <Route
-                        path={process.env.PUBLIC_URL + "/topology"}
-                        component={Topology}
-                      />
-                      <Route
-                        path={process.env.PUBLIC_URL + "/not-found"}
-                        component={NotFound}
-                      />
-                      <Redirect from="/" exact to="/profile" />
-                      <Redirect to="/not-found" />
-                    </Switch>
-                  </CSSTransition>
-                </TransitionGroup>
-                <ScrollBar pathName={location.pathname} />
-              </React.Fragment>
-            )}
-          />
+          <BrowserRouter basename={process.env.PUBLIC_URL}>
+            <Route
+              render={({ location }) => (
+                <React.Fragment>
+                  <TransitionGroup>
+                    <CSSTransition
+                      key={location.key}
+                      timeout={600}
+                      classNames="fade"
+                    >
+                      <Switch location={location}>
+                        <Route path="/profile" component={Profile} />
+                        <Route path="/tracking" component={Tracking} />
+                        <Route path="/possibility" component={Possibility} />
+                        <Route path="/topology" component={Topology} />
+                        <Route path="/not-found" component={NotFound} />
+                        <Redirect from="/" exact to="/profile" />
+                        <Redirect to="/not-found" />
+                      </Switch>
+                    </CSSTransition>
+                  </TransitionGroup>
+                  <ScrollBar pathName={location.pathname} />
+                </React.Fragment>
+              )}
+            />
+          </BrowserRouter>
         </div>
       </React.Fragment>
     );
