@@ -31,7 +31,14 @@ class Profile extends Component {
           <React.Fragment>
             <p className="m-0">
               <span className="font-weight-bolder font-italic ">
-                2019 - now
+                2021 - 2025
+              </span>
+              <span className="pl-2">KKday</span>
+            </p>
+            <p className="pl-4">Senior Front-end Developer</p>
+            <p className="m-0">
+              <span className="font-weight-bolder font-italic ">
+                2019 - 2020
               </span>
               <span className="pl-2">FLOW</span>
             </p>
@@ -76,7 +83,7 @@ class Profile extends Component {
   }
 
   getWorkingYears() {
-    const now = new Date().getTime();
+    const now = new Date(2025, 3, 31).getTime();
     const then = new Date(2016, 10, 26).getTime();
     return ((now - then) / 1000 / 60 / 60 / 24 / 365).toFixed(1);
   }
